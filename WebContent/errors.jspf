@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.util.HashMap" %>
+
+<%	if (request.getAttribute("errors") != null) { %>
+		<div id="errors">
+<% 		HashMap<String, String> errors = (HashMap<String, String>) request.getAttribute("errors");
+		for (String error: errors.values()) { %>
+			<p class="error">- <%= error %></p>
+<%		}	%>
+		</div>
+<%	} %>

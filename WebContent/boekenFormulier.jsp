@@ -20,24 +20,25 @@
 <main>
 <section>
 <h2>Boek toevoegen</h2>
-<form >
-   <fieldset>
-   <legend>Registreer je boek in de boekenkast</legend>
+<form method="POST" action="BookController?action=ADD">
+   	<fieldset>
+   	<legend>Registreer je boek in de boekenkast</legend>
+   	<%@ include file="errors.jspf" %>
     <p>
-        <label for="">Titel*</label>
-        <input id="" name="title" autofocus="" type="text">
+        <label for="title">Titel*</label>
+        <input id="title" name="title" autofocus="" type="text">
     </p>
     <p>
-        <label for="">Auteur</label>
+        <label for="author">Auteur</label>
         
-        <input id="" name="author" size="auto" type="text">
+        <input id="author" name="author" size="auto" type="text">
     </p>      <p>
-        <label for="">Aantal pagina's</label>
-        <input class="small" id="" name="nrpages" autofocus="" size="5" type="number">
+        <label for="nrpages">Aantal pagina's</label>
+        <input class="small" id="nrpages" name="nrpages" autofocus="" size="5" type="number">
     </p> 
            <p>
-        <label for="">ISBN*</label>
-        <input class="small" id="" name="isbn" autofocus="" size="17" title="ISBN indeling 123-12-123-1234-1" placeholder="123-12-123-1234-1" type="text">
+        <label for="isbn">ISBN*</label>
+        <input class="small" id="isbn" name="isbn" autofocus="" size="17" title="ISBN indeling 123-12-123-1234-1" placeholder="123-12-123-1234-1" type="text">
     </p> <p>
         <input class="small" value="Registreer" autofocus="" type="submit">
     </p>
