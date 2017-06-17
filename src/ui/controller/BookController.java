@@ -62,6 +62,12 @@ public class BookController extends HttpServlet {
 			case "DELETEConfirm" : 
 				destination = deleteConfirm(request, response);
 				break;
+			case "UPDATE" : 
+				destination = updateBook(request, response);
+				break;
+			case "UPDATEConfirm" : 
+				destination = updateConfirm(request, response);
+				break;
 			default:
 				destination = "index.jsp";
 				break;
@@ -113,6 +119,39 @@ public class BookController extends HttpServlet {
 		library.delete(isbn);
 		
 		String destination = this.showBooks(request, response);
+		return destination;
+	}
+	
+	protected String updateBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String destination = "boekUpdate.jsp";
+		String isbn = request.getParameter("isbn");
+		
+		request.setAttribute("bookToUpdate", library.getBook(isbn));
+		
+		return destination;
+	}
+	
+	protected String updateConfirm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String isbn = request.getParameter("isbn");
+		String title = request.getParameter("title");
+		String author = request.getParameter("author");
+		String nrpages = request.getParameter("nrpages");
+		
+		HashMap<String, String> errors = this.getErrorList(request, response);
+		
+		String destination;
+		Book book = library.getBook(isbn);
+		if (errors.size() <= 0) {
+			book.setTitle(title);
+			book.setAuthor(author);
+			book.setNrOfPages(Integer.valueOf(nrpages));
+			destination = this.showBooks(request, response);
+		} else {
+			request.setAttribute("bookToUpdate", book);
+			request.setAttribute("errors", errors);
+			destination = "boekUpdate.jsp";
+		}
+		
 		return destination;
 	}
 	

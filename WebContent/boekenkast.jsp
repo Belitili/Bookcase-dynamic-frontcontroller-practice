@@ -30,6 +30,7 @@
 					<th>Aantal pg.</th>
 					<th>ISBN</th>
 					<th>Verwijder?</th>
+					<th>Wijzigen?</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,6 +41,8 @@
 					<th><%= book.getNrOfPages() %></th>
 					<th><%= book.getIsbn() %></th>
 					<th><a href="BookController?action=DELETE&isbn=<%= book.getIsbn() %>">Verwijder</a></th>
+					<th><a href="BookController?action=UPDATE&isbn=<%= book.getIsbn() %>">Wijzigen</a></th>
+					
 			<%	} %>
 			</tbody>
 		</table>
