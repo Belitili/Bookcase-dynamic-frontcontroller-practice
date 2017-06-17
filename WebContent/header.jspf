@@ -1,0 +1,19 @@
+<header>
+	<h1>
+		<img src="images/boekenkast_ori35_detail.jpg" alt="boekenkast">
+	</h1>
+    <p> 
+    	<span class="bron">Last of the color coding by <a href="http://www.flickr.com/photos/juhansonin/">J. Sonin</a>, adapted under a <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> license.</span> 
+    </p>
+       <nav class="nav"><ul>
+            <li><a href="index.jsp">Home</a>
+            </li>
+            <li><a href="boekenFormulier.jsp">Voeg een boek toe</a>
+            </li>
+            <li><a href="BookController?action=READ">Mijn boekenkast</a>
+            </li>
+        </ul>
+        </nav>
+        
+
+ </header>
