@@ -23,24 +23,14 @@
 <form method="POST" action="BookController?action=ADD">
    	<fieldset>
    	<legend>Registreer je boek in de boekenkast</legend>
-   	<%@ include file="errors.jspf" %>
     <p>
-        <label for="title">Titel*</label>
-        <input id="title" name="title" autofocus="" type="text">
-    </p>
-    <p>
-        <label for="author">Auteur</label>
-        
-        <input id="author" name="author" size="auto" type="text">
-    </p>      <p>
-        <label for="nrpages">Aantal pagina's</label>
-        <input class="small" id="nrpages" name="nrpages" autofocus="" size="5" type="number">
-    </p> 
-           <p>
-        <label for="isbn">ISBN*</label>
-        <input class="small" id="isbn" name="isbn" autofocus="" size="17" title="ISBN indeling 123-12-123-1234-1" placeholder="123-12-123-1234-1" type="text">
-    </p> <p>
-        <input class="small" value="Registreer" autofocus="" type="submit">
+    	<%	if (request.getAttribute("errors") != null) { %>
+	    	<%@ include file="errors.jspf" %>
+	    	<%@ include file="addBookFormRepeat.jspf" %>
+    	<%	}  else { %>
+    		<%@ include file="addBookForm.jspf" %>
+    	<%	} %>
+        <input class="small" id="addBook" value="Registreer" autofocus="" type="submit">
     </p>
     </fieldset>
 </form>

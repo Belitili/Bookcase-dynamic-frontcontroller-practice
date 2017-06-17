@@ -4,10 +4,10 @@ import domain.DomainException;
 
 public class Book {
 	
-	private String title;
-	private String author;
-	private int nrOfPages;
-	private String isbn;
+	private String title = "";
+	private String author = "";
+	private int nrOfPages = 0;
+	private String isbn = "";
 	
 	public Book() {
 	}

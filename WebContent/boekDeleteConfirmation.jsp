@@ -26,10 +26,10 @@
 </ul>
 <p>Wil je hiermee doorgaan?</p>   
 <form method="POST" action="BookController?action=DELETEConfirm&isbn=<%= book.getIsbn() %>">
-	<input type="submit" value="Ja" />
+	<input id="verwijderJa" type="submit" value="Ja" />
 </form>
 <form method="POST" action="BookController?action=READ">
-	<input type="submit" value="Nee" />
+	<input id="verwijderNee" type="submit" value="Nee" />
 </form>
 
 

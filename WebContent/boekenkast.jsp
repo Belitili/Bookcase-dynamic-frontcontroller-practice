@@ -36,13 +36,14 @@
 			<tbody>
 			<% 	Collection<Book> books = (Collection<Book>) request.getAttribute("books");
 				for(Book book: books) { %>
-					<th><%= book.getTitle() %></th>
-					<th><%= book.getAuthor() %></th>
-					<th><%= book.getNrOfPages() %></th>
-					<th><%= book.getIsbn() %></th>
-					<th><a href="BookController?action=DELETE&isbn=<%= book.getIsbn() %>">Verwijder</a></th>
-					<th><a href="BookController?action=UPDATE&isbn=<%= book.getIsbn() %>">Wijzigen</a></th>
-					
+				<tr>
+					<td><%= book.getTitle() %></td>
+					<td><%= book.getAuthor() %></td>
+					<td><%= book.getNrOfPages() %></td>
+					<td><%= book.getIsbn() %></td>
+					<td><a id="delete<%= book.getIsbn() %>" href="BookController?action=DELETE&isbn=<%= book.getIsbn() %>">Verwijder</a></td>
+					<td><a id="update<%= book.getIsbn() %>" href="BookController?action=UPDATE&isbn=<%= book.getIsbn() %>">Wijzigen</a></td>
+				</tr>
 			<%	} %>
 			</tbody>
 		</table>

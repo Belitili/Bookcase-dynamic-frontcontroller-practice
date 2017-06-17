@@ -15,6 +15,7 @@ import domain.DomainException;
 import domain.db.LibraryService;
 import domain.db.LibraryServiceNoDB;
 import domain.model.Book;
+import javafx.util.Pair;
 
 /**
  * Servlet implementation class BookController
@@ -78,7 +79,9 @@ public class BookController extends HttpServlet {
 	
 	protected String addBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String destination;
-		HashMap<String, String> errors = this.getErrorList(request, response);
+		Pair<HashMap<String, String>,Book> errorTestResult = this.getErrorList(request, response);
+		HashMap<String, String> errors = errorTestResult.getKey();
+		Book newBook = errorTestResult.getValue();
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String nrOfPages = request.getParameter("nrpages");
@@ -87,12 +90,12 @@ public class BookController extends HttpServlet {
 		if (library.getBook(isbn)!=null) {
 			errors.put("isbn", "There already is a book with this isbn.");
 		}
-		System.out.println("errorsize: " + errors.size());
 		if (errors.size() <= 0) {
-			library.addBook(new Book(title,author,Integer.valueOf(nrOfPages),isbn));
+			library.addBook(newBook);
 			destination = this.showBooks(request, response);
 		} else {
 			request.setAttribute("errors", errors);
+			request.setAttribute("book", newBook);
 			destination = "boekenFormulier.jsp";
 		}
 		return destination;
@@ -137,7 +140,7 @@ public class BookController extends HttpServlet {
 		String author = request.getParameter("author");
 		String nrpages = request.getParameter("nrpages");
 		
-		HashMap<String, String> errors = this.getErrorList(request, response);
+		HashMap<String, String> errors = this.getErrorList(request, response).getKey();
 		
 		String destination;
 		Book book = library.getBook(isbn);
@@ -155,7 +158,7 @@ public class BookController extends HttpServlet {
 		return destination;
 	}
 	
-	private HashMap<String, String> getErrorList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private Pair<HashMap<String, String>, Book> getErrorList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String nrOfPages = request.getParameter("nrpages");
@@ -193,7 +196,7 @@ public class BookController extends HttpServlet {
 			errors.put("isbn", e.getMessage());
 		}
 		
-		return errors;
+		return new Pair<>(errors, newBook);
 	}
 
 }
