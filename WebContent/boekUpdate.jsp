@@ -24,7 +24,9 @@
 <form method="POST" action="BookController?action=UPDATEConfirm">
    	<fieldset>
    	<legend>Update je boek in de boekenkast</legend>
-   	<%@ include file="errors.jspf" %>
+   	<%	if (request.getAttribute("errors") != null) { %>
+	    	<%@ include file="errors.jspf" %>
+    	<%	} %>
    	<% Book book = (Book) request.getAttribute("bookToUpdate"); %>
     <p>
         <label for="title">Titel*</label>

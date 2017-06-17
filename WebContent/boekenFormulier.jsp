@@ -26,10 +26,8 @@
     <p>
     	<%	if (request.getAttribute("errors") != null) { %>
 	    	<%@ include file="errors.jspf" %>
-	    	<%@ include file="addBookFormRepeat.jspf" %>
-    	<%	}  else { %>
-    		<%@ include file="addBookForm.jspf" %>
-    	<%	} %>
+    	<%	}  %>
+    	<%@ include file="addBookForm.jspf" %>
         <input class="small" id="addBook" value="Registreer" autofocus="" type="submit">
     </p>
     </fieldset>
