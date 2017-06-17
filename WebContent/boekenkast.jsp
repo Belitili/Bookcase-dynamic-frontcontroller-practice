@@ -39,7 +39,7 @@
 					<th><%= book.getAuthor() %></th>
 					<th><%= book.getNrOfPages() %></th>
 					<th><%= book.getIsbn() %></th>
-					<th>Verwijder TODO</th>
+					<th><a href="BookController?action=DELETE&isbn=<%= book.getIsbn() %>">Verwijder</a></th>
 			<%	} %>
 			</tbody>
 		</table>

@@ -56,11 +56,16 @@ public class BookController extends HttpServlet {
 			case "READ" :
 				destination = showBooks(request, response);
 				break;
+			case "DELETE" :
+				destination = deleteBook(request, response);
+				break;
+			case "DELETEConfirm" : 
+				destination = deleteConfirm(request, response);
+				break;
 			default:
 				destination = "index.jsp";
 				break;
 		}
-		System.out.println("dest2: " + destination);
 		RequestDispatcher view = request.getRequestDispatcher(destination);
 		view.forward(request, response);
 	}
@@ -78,15 +83,12 @@ public class BookController extends HttpServlet {
 		}
 		System.out.println("errorsize: " + errors.size());
 		if (errors.size() <= 0) {
-			System.out.println("nonerr");
 			library.addBook(new Book(title,author,Integer.valueOf(nrOfPages),isbn));
 			destination = this.showBooks(request, response);
 		} else {
-			System.out.println("eorr");
 			request.setAttribute("errors", errors);
 			destination = "boekenFormulier.jsp";
 		}
-		System.out.println("dest1: " + destination);
 		return destination;
 	}
 	
@@ -94,6 +96,23 @@ public class BookController extends HttpServlet {
 		String destination = "boekenkast.jsp";
 		Collection<Book> books = library.read();
 		request.setAttribute("books", books);
+		return destination;
+	}
+	
+	protected String deleteBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String destination = "boekDeleteConfirmation.jsp";
+		String isbn = request.getParameter("isbn");
+		
+		request.setAttribute("bookToDelete", library.getBook(isbn));
+		
+		return destination;
+	}
+	
+	protected String deleteConfirm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String isbn = request.getParameter("isbn");
+		library.delete(isbn);
+		
+		String destination = this.showBooks(request, response);
 		return destination;
 	}
 	
